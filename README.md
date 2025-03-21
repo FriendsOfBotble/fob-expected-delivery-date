@@ -24,7 +24,7 @@ This is a plugin for Botble CMS that adds expected delivery date functionality t
 
 ![Screenshot](./art/1.jpeg)
 
-![Screenshot](./art/1.jpeg)  
+![Screenshot](./art/2.jpeg)  
 
 ## Usage
 
