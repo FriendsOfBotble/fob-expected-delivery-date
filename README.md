@@ -21,6 +21,11 @@ This is a plugin for Botble CMS that adds expected delivery date functionality t
 - Display delivery estimates on product pages
 - Default delivery estimates for products without custom settings
 
+
+![Screenshot](./art/1.jpeg)
+
+![Screenshot](./art/1.jpeg)  
+
 ## Usage
 
 1. Edit a product in the admin panel
