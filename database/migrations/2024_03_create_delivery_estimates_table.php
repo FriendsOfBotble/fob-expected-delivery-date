@@ -4,10 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
+        if (Schema::hasTable('ec_delivery_estimates')) {
+            return;
+        }
+
         Schema::create('ec_delivery_estimates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->references('id')->on('ec_products')->onDelete('cascade');
@@ -23,4 +26,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('ec_delivery_estimates');
     }
-}; 
+};
