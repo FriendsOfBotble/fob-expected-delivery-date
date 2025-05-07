@@ -24,6 +24,12 @@ class DeliveryEstimateService
         return [
             'min_date' => $minDate->format('Y-m-d'),
             'max_date' => $maxDate->format('Y-m-d'),
+            'label' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.estimated_delivery'),
+            'value' => sprintf(
+                '%s - %s',
+                $minDate->format('M d'),
+                $maxDate->format('M d')
+            ),
             'formatted' => sprintf(
                 '%s: %s - %s',
                 trans('plugins/fob-expected-delivery-date::expected-delivery-date.estimated_delivery'),
@@ -41,6 +47,12 @@ class DeliveryEstimateService
         return [
             'min_date' => $minDate->format('Y-m-d'),
             'max_date' => $maxDate->format('Y-m-d'),
+            'label' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.estimated_delivery'),
+            'value' => sprintf(
+                '%s - %s',
+                $minDate->format('M d'),
+                $maxDate->format('M d')
+            ),
             'formatted' => sprintf(
                 '%s: %s - %s',
                 trans('plugins/fob-expected-delivery-date::expected-delivery-date.estimated_delivery'),
