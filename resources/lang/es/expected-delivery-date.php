@@ -20,6 +20,8 @@ return [
         'icon_color' => 'Color de Icono',
         'border_color' => 'Color de Borde',
         'border_radius' => 'Radio de Borde (px)',
+        'default_min_days' => 'Días Mínimos Predeterminados',
+        'default_max_days' => 'Días Máximos Predeterminados',
         'font_weights' => [
             'normal' => 'Normal',
             'medium' => 'Medio (500)',

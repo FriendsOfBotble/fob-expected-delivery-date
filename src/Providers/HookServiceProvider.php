@@ -59,8 +59,8 @@ class HookServiceProvider extends ServiceProvider
         DeliveryEstimate::updateOrCreate(
             ['product_id' => $product->id],
             [
-                'min_days' => $request->input('min_days', 3),
-                'max_days' => $request->input('max_days', 7),
+                'min_days' => $request->input('min_days', setting('expected_delivery_date_default_min_days', 3)),
+                'max_days' => $request->input('max_days', setting('expected_delivery_date_default_max_days', 7)),
                 'is_active' => $request->input('delivery_estimate_active', true),
             ]
         );

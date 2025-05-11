@@ -100,6 +100,28 @@ class ExpectedDeliveryDateSettingForm extends SettingForm
                         'max' => 50,
                     ],
                 ]
+            )
+            ->add(
+                'expected_delivery_date_default_min_days',
+                'number',
+                [
+                    'label' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.settings.default_min_days'),
+                    'value' => setting('expected_delivery_date_default_min_days', 3),
+                    'attr' => [
+                        'min' => 1,
+                    ],
+                ]
+            )
+            ->add(
+                'expected_delivery_date_default_max_days',
+                'number',
+                [
+                    'label' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.settings.default_max_days'),
+                    'value' => setting('expected_delivery_date_default_max_days', 7),
+                    'attr' => [
+                        'min' => 1,
+                    ],
+                ]
             );
     }
 }

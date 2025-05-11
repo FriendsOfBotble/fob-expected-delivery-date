@@ -20,6 +20,8 @@ return [
         'icon_color' => 'لون الأيقونة',
         'border_color' => 'لون الحدود',
         'border_radius' => 'تقويس الحدود (بكسل)',
+        'default_min_days' => 'الحد الأدنى الافتراضي للأيام',
+        'default_max_days' => 'الحد الأقصى الافتراضي للأيام',
         'font_weights' => [
             'normal' => 'عادي',
             'medium' => 'متوسط (500)',

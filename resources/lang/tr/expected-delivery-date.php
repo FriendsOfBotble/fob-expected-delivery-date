@@ -20,6 +20,8 @@ return [
         'icon_color' => 'Simge Rengi',
         'border_color' => 'Kenarlık Rengi',
         'border_radius' => 'Kenarlık Yarıçapı (px)',
+        'default_min_days' => 'Varsayılan Minimum Gün',
+        'default_max_days' => 'Varsayılan Maksimum Gün',
         'font_weights' => [
             'normal' => 'Normal',
             'medium' => 'Orta (500)',

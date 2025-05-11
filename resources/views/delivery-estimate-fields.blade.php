@@ -3,7 +3,7 @@
     <input type="number"
            class="form-control"
            name="min_days"
-           value="{{ $estimate ? $estimate->min_days : 3 }}"
+           value="{{ $estimate ? $estimate->min_days : setting('expected_delivery_date_default_min_days', 3) }}"
            min="1">
 </div>
 
@@ -12,7 +12,7 @@
     <input type="number"
            class="form-control"
            name="max_days"
-           value="{{ $estimate ? $estimate->max_days : 7 }}"
+           value="{{ $estimate ? $estimate->max_days : setting('expected_delivery_date_default_max_days', 7) }}"
            min="1">
 </div>
 

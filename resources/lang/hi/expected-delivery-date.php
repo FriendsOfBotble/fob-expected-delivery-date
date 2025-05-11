@@ -20,6 +20,8 @@ return [
         'icon_color' => 'आइकन रंग',
         'border_color' => 'बॉर्डर रंग',
         'border_radius' => 'बॉर्डर रेडियस (पिक्सेल)',
+        'default_min_days' => 'डिफ़ॉल्ट न्यूनतम दिन',
+        'default_max_days' => 'डिफ़ॉल्ट अधिकतम दिन',
         'font_weights' => [
             'normal' => 'सामान्य',
             'medium' => 'मध्यम (500)',

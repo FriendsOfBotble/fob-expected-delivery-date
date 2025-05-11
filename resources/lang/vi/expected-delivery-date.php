@@ -20,6 +20,8 @@ return [
         'icon_color' => 'Màu Biểu Tượng',
         'border_color' => 'Màu Viền',
         'border_radius' => 'Bo Góc Viền (px)',
+        'default_min_days' => 'Số Ngày Tối Thiểu Mặc Định',
+        'default_max_days' => 'Số Ngày Tối Đa Mặc Định',
         'font_weights' => [
             'normal' => 'Bình thường',
             'medium' => 'Vừa (500)',

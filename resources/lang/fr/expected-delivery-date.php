@@ -20,6 +20,8 @@ return [
         'icon_color' => 'Couleur d\'Icône',
         'border_color' => 'Couleur de Bordure',
         'border_radius' => 'Rayon de Bordure (px)',
+        'default_min_days' => 'Jours Minimum par Défaut',
+        'default_max_days' => 'Jours Maximum par Défaut',
         'font_weights' => [
             'normal' => 'Normal',
             'medium' => 'Moyen (500)',

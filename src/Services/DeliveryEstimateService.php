@@ -41,8 +41,11 @@ class DeliveryEstimateService
 
     private function getDefaultEstimate(): array
     {
-        $minDate = Carbon::now()->addDays(3);
-        $maxDate = Carbon::now()->addDays(7);
+        $defaultMinDays = (int)setting('expected_delivery_date_default_min_days', 3);
+        $defaultMaxDays = (int)setting('expected_delivery_date_default_max_days', 7);
+
+        $minDate = Carbon::now()->addDays($defaultMinDays);
+        $maxDate = Carbon::now()->addDays($defaultMaxDays);
 
         return [
             'min_date' => $minDate->format('Y-m-d'),

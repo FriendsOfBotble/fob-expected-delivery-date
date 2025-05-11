@@ -18,6 +18,8 @@ class ExpectedDeliveryDateSettingRequest extends Request
             'expected_delivery_date_icon_color' => 'nullable|string|max:20',
             'expected_delivery_date_border_color' => 'nullable|string|max:20',
             'expected_delivery_date_border_radius' => 'nullable|integer|min:0|max:50',
+            'expected_delivery_date_default_min_days' => 'nullable|integer|min:1',
+            'expected_delivery_date_default_max_days' => 'nullable|integer|min:1',
         ];
     }
 }

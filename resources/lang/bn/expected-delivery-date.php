@@ -20,6 +20,8 @@ return [
         'icon_color' => 'আইকন রঙ',
         'border_color' => 'বর্ডার রঙ',
         'border_radius' => 'বর্ডার রেডিয়াস (পিক্সেল)',
+        'default_min_days' => 'ডিফল্ট সর্বনিম্ন দিন',
+        'default_max_days' => 'ডিফল্ট সর্বাধিক দিন',
         'font_weights' => [
             'normal' => 'সাধারণ',
             'medium' => 'মাঝারি (500)',

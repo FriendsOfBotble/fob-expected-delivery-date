@@ -20,6 +20,8 @@ return [
         'icon_color' => 'Warna Ikon',
         'border_color' => 'Warna Batas',
         'border_radius' => 'Radius Batas (px)',
+        'default_min_days' => 'Hari Minimum Default',
+        'default_max_days' => 'Hari Maksimum Default',
         'font_weights' => [
             'normal' => 'Normal',
             'medium' => 'Medium (500)',
