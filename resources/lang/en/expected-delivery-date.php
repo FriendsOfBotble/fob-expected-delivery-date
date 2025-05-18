@@ -22,6 +22,7 @@ return [
         'border_radius' => 'Border Radius (px)',
         'default_min_days' => 'Default Minimum Days',
         'default_max_days' => 'Default Maximum Days',
+        'date_format' => 'Date Format',
         'font_weights' => [
             'normal' => 'Normal',
             'medium' => 'Medium (500)',

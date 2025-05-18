@@ -4,10 +4,13 @@ namespace FriendsOfBotble\ExpectedDeliveryDate\Forms\Settings;
 
 use Botble\Base\Forms\FieldOptions\ColorFieldOption;
 use Botble\Base\Forms\FieldOptions\CoreIconFieldOption;
+use Botble\Base\Forms\FieldOptions\SelectFieldOption;
 use Botble\Base\Forms\Fields\ColorField;
 use Botble\Base\Forms\Fields\CoreIconField;
+use Botble\Base\Forms\Fields\SelectField;
 use Botble\Setting\Forms\SettingForm;
 use FriendsOfBotble\ExpectedDeliveryDate\Http\Requests\Settings\ExpectedDeliveryDateSettingRequest;
+use FriendsOfBotble\ExpectedDeliveryDate\Services\DeliveryEstimateService;
 
 class ExpectedDeliveryDateSettingForm extends SettingForm
 {
@@ -122,6 +125,15 @@ class ExpectedDeliveryDateSettingForm extends SettingForm
                         'min' => 1,
                     ],
                 ]
+            )
+            ->add(
+                'expected_delivery_date_format',
+                SelectField::class,
+                SelectFieldOption::make()
+                    ->label(trans('plugins/fob-expected-delivery-date::expected-delivery-date.settings.date_format'))
+                    ->choices(array_combine(app(DeliveryEstimateService::class)->supportedDateFormats(), app(DeliveryEstimateService::class)->supportedDateFormats()))
+                    ->selected(setting('expected_delivery_date_format', 'M d'))
+                    ->searchable()
             );
     }
 }

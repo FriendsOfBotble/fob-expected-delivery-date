@@ -24,6 +24,7 @@ class Plugin extends PluginOperationAbstract
             'expected_delivery_date_border_radius',
             'expected_delivery_date_default_min_days',
             'expected_delivery_date_default_max_days',
+            'expected_delivery_date_format',
         ]);
     }
 }

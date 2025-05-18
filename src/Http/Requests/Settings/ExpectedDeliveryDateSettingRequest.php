@@ -3,6 +3,8 @@
 namespace FriendsOfBotble\ExpectedDeliveryDate\Http\Requests\Settings;
 
 use Botble\Support\Http\Requests\Request;
+use FriendsOfBotble\ExpectedDeliveryDate\Services\DeliveryEstimateService;
+use Illuminate\Validation\Rule;
 
 class ExpectedDeliveryDateSettingRequest extends Request
 {
@@ -20,6 +22,7 @@ class ExpectedDeliveryDateSettingRequest extends Request
             'expected_delivery_date_border_radius' => 'nullable|integer|min:0|max:50',
             'expected_delivery_date_default_min_days' => 'nullable|integer|min:1',
             'expected_delivery_date_default_max_days' => 'nullable|integer|min:1',
+            'expected_delivery_date_format' => ['nullable', 'string', Rule::in(app(DeliveryEstimateService::class)->supportedDateFormats())],
         ];
     }
 }
