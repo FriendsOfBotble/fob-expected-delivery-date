@@ -40,5 +40,6 @@
     width: 20px;
     height: 20px;
     flex-shrink: 0;
+    margin: 0;
 }
 </style>
