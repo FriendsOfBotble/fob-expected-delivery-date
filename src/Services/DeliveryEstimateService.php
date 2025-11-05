@@ -48,57 +48,81 @@ class DeliveryEstimateService
             return $this->getDefaultEstimate();
         }
 
-        $minDays = (int) $estimate->min_days ?: 4;
-        $maxDays = (int) $estimate->max_days ?: 7;
+        $minTime = (int) $estimate->min_days ?: 4;
+        $maxTime = (int) $estimate->max_days ?: 7;
+        $timeUnit = $estimate->time_unit ?: 'days';
 
-        $minDate = Carbon::now()->addDays($minDays);
-        $maxDate = Carbon::now()->addDays($maxDays);
-
-        $dateFormat = setting('expected_delivery_date_format', 'M d');
-
-        return [
-            'min_date' => $minDate->format('Y-m-d'),
-            'max_date' => $maxDate->format('Y-m-d'),
-            'label' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.estimated_delivery'),
-            'value' => sprintf(
-                '%s - %s',
-                BaseHelper::formatDate($minDate, $dateFormat),
-                BaseHelper::formatDate($maxDate, $dateFormat)
-            ),
-            'formatted' => sprintf(
-                '%s: %s - %s',
-                trans('plugins/fob-expected-delivery-date::expected-delivery-date.estimated_delivery'),
-                BaseHelper::formatDate($minDate, $dateFormat),
-                BaseHelper::formatDate($maxDate, $dateFormat)
-            ),
-        ];
+        return $this->calculateEstimate($minTime, $maxTime, $timeUnit);
     }
 
     protected function getDefaultEstimate(): array
     {
-        $defaultMinDays = (int) setting('expected_delivery_date_default_min_days', 3);
-        $defaultMaxDays = (int) setting('expected_delivery_date_default_max_days', 7);
+        $defaultMinTime = (int) setting('expected_delivery_date_default_min_days', 3);
+        $defaultMaxTime = (int) setting('expected_delivery_date_default_max_days', 7);
+        $defaultTimeUnit = setting('expected_delivery_date_default_time_unit', 'days');
 
-        $minDate = Carbon::now()->addDays($defaultMinDays);
-        $maxDate = Carbon::now()->addDays($defaultMaxDays);
+        return $this->calculateEstimate($defaultMinTime, $defaultMaxTime, $defaultTimeUnit);
+    }
 
-        $dateFormat = setting('expected_delivery_date_format', 'M d');
+    protected function calculateEstimate(int $minTime, int $maxTime, string $timeUnit): array
+    {
+        $now = Carbon::now();
 
-        return [
-            'min_date' => $minDate->format('Y-m-d'),
-            'max_date' => $maxDate->format('Y-m-d'),
-            'label' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.estimated_delivery'),
-            'value' => sprintf(
+        // Calculate the delivery dates based on time unit
+        switch ($timeUnit) {
+            case 'minutes':
+                $minDate = $now->copy()->addMinutes($minTime);
+                $maxDate = $now->copy()->addMinutes($maxTime);
+                break;
+            case 'hours':
+                $minDate = $now->copy()->addHours($minTime);
+                $maxDate = $now->copy()->addHours($maxTime);
+                break;
+            case 'days':
+            default:
+                $minDate = $now->copy()->addDays($minTime);
+                $maxDate = $now->copy()->addDays($maxTime);
+                break;
+        }
+
+        // Check if delivery is within the same day (for minutes/hours)
+        $isSameDay = $minDate->isSameDay($maxDate) && $minDate->isSameDay($now);
+
+        if ($isSameDay && in_array($timeUnit, ['minutes', 'hours'])) {
+            // For same-day delivery, show time ranges
+            $value = $this->formatTimeRange($minTime, $maxTime, $timeUnit);
+        } else {
+            // For multi-day delivery, show date ranges
+            $dateFormat = setting('expected_delivery_date_format', 'M d');
+            $value = sprintf(
                 '%s - %s',
                 BaseHelper::formatDate($minDate, $dateFormat),
                 BaseHelper::formatDate($maxDate, $dateFormat)
-            ),
+            );
+        }
+
+        return [
+            'min_date' => $minDate->format('Y-m-d H:i:s'),
+            'max_date' => $maxDate->format('Y-m-d H:i:s'),
+            'time_unit' => $timeUnit,
+            'label' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.estimated_delivery'),
+            'value' => $value,
             'formatted' => sprintf(
-                '%s: %s - %s',
+                '%s: %s',
                 trans('plugins/fob-expected-delivery-date::expected-delivery-date.estimated_delivery'),
-                BaseHelper::formatDate($minDate, $dateFormat),
-                BaseHelper::formatDate($maxDate, $dateFormat)
+                $value
             ),
         ];
+    }
+
+    protected function formatTimeRange(int $minTime, int $maxTime, string $timeUnit): string
+    {
+        $unitLabel = trans('plugins/fob-expected-delivery-date::expected-delivery-date.time_units.' . $timeUnit);
+
+        if ($minTime === $maxTime) {
+            return sprintf('%d %s', $minTime, strtolower($unitLabel));
+        }
+
+        return sprintf('%d - %d %s', $minTime, $maxTime, strtolower($unitLabel));
     }
 }

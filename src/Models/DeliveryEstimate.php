@@ -14,6 +14,7 @@ class DeliveryEstimate extends BaseModel
         'product_id',
         'min_days',
         'max_days',
+        'time_unit',
         'shipping_zones',
         'is_active',
     ];
