@@ -105,10 +105,23 @@ class ExpectedDeliveryDateSettingForm extends SettingForm
                 ]
             )
             ->add(
+                'expected_delivery_date_default_time_unit',
+                'select',
+                [
+                    'label' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.settings.default_time_unit'),
+                    'value' => setting('expected_delivery_date_default_time_unit', 'days'),
+                    'choices' => [
+                        'minutes' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.time_units.minutes'),
+                        'hours' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.time_units.hours'),
+                        'days' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.time_units.days'),
+                    ],
+                ]
+            )
+            ->add(
                 'expected_delivery_date_default_min_days',
                 'number',
                 [
-                    'label' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.settings.default_min_days'),
+                    'label' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.settings.default_min_time'),
                     'value' => setting('expected_delivery_date_default_min_days', 3),
                     'attr' => [
                         'min' => 1,
@@ -119,7 +132,7 @@ class ExpectedDeliveryDateSettingForm extends SettingForm
                 'expected_delivery_date_default_max_days',
                 'number',
                 [
-                    'label' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.settings.default_max_days'),
+                    'label' => trans('plugins/fob-expected-delivery-date::expected-delivery-date.settings.default_max_time'),
                     'value' => setting('expected_delivery_date_default_max_days', 7),
                     'attr' => [
                         'min' => 1,

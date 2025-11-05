@@ -59,6 +59,7 @@ class HookServiceProvider extends ServiceProvider
             [
                 'min_days' => $request->input('min_days', (int) setting('expected_delivery_date_default_min_days', 3)),
                 'max_days' => $request->input('max_days', (int) setting('expected_delivery_date_default_max_days', 7)),
+                'time_unit' => $request->input('time_unit', setting('expected_delivery_date_default_time_unit', 'days')),
                 'is_active' => $request->input('delivery_estimate_active', true),
             ]
         );

@@ -1,5 +1,20 @@
 <div class="mb-3">
-    <label class="form-label">{{ trans('plugins/fob-expected-delivery-date::expected-delivery-date.min_days') }}</label>
+    <label class="form-label">{{ trans('plugins/fob-expected-delivery-date::expected-delivery-date.time_unit') }}</label>
+    <select class="form-control" name="time_unit">
+        <option value="minutes" {{ ($estimate && $estimate->time_unit === 'minutes') || (!$estimate && setting('expected_delivery_date_default_time_unit') === 'minutes') ? 'selected' : '' }}>
+            {{ trans('plugins/fob-expected-delivery-date::expected-delivery-date.time_units.minutes') }}
+        </option>
+        <option value="hours" {{ ($estimate && $estimate->time_unit === 'hours') || (!$estimate && setting('expected_delivery_date_default_time_unit') === 'hours') ? 'selected' : '' }}>
+            {{ trans('plugins/fob-expected-delivery-date::expected-delivery-date.time_units.hours') }}
+        </option>
+        <option value="days" {{ ($estimate && $estimate->time_unit === 'days') || (!$estimate && setting('expected_delivery_date_default_time_unit', 'days') === 'days') ? 'selected' : '' }}>
+            {{ trans('plugins/fob-expected-delivery-date::expected-delivery-date.time_units.days') }}
+        </option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">{{ trans('plugins/fob-expected-delivery-date::expected-delivery-date.min_time') }}</label>
     <input type="number"
            class="form-control"
            name="min_days"
@@ -8,7 +23,7 @@
 </div>
 
 <div class="mb-3">
-    <label class="form-label">{{ trans('plugins/fob-expected-delivery-date::expected-delivery-date.max_days') }}</label>
+    <label class="form-label">{{ trans('plugins/fob-expected-delivery-date::expected-delivery-date.max_time') }}</label>
     <input type="number"
            class="form-control"
            name="max_days"
