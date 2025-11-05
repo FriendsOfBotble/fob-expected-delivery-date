@@ -11,6 +11,10 @@ return new class () extends Migration {
             return;
         }
 
+        if (Schema::hasColumn('ec_delivery_estimates', 'time_unit')) {
+            return;
+        }
+
         Schema::table('ec_delivery_estimates', function (Blueprint $table) {
             $table->string('time_unit', 20)->default('days')->after('max_days');
         });
@@ -19,6 +23,10 @@ return new class () extends Migration {
     public function down(): void
     {
         if (! Schema::hasTable('ec_delivery_estimates')) {
+            return;
+        }
+
+        if (! Schema::hasColumn('ec_delivery_estimates', 'time_unit')) {
             return;
         }
 
