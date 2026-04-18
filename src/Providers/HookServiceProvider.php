@@ -18,8 +18,11 @@ class HookServiceProvider extends ServiceProvider
 
         add_filter(ECOMMERCE_PRODUCT_DETAIL_EXTRA_HTML, function ($html, $product) {
             if ($product instanceof Product) {
-                $estimateService = app(DeliveryEstimateService::class);
-                $estimate = $estimateService->calculateDeliveryDate($product);
+                $estimate = app(DeliveryEstimateService::class)->calculateDeliveryDate($product);
+
+                if (empty($estimate)) {
+                    return $html;
+                }
 
                 return $html . view('plugins/fob-expected-delivery-date::estimate', compact('estimate'));
             }

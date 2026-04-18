@@ -41,11 +41,14 @@ class DeliveryEstimateService
     {
         $estimate = DeliveryEstimate::query()
             ->where('product_id', $product->getKey())
-            ->where('is_active', true)
             ->first();
 
         if (! $estimate) {
             return $this->getDefaultEstimate();
+        }
+
+        if (! $estimate->is_active) {
+            return [];
         }
 
         $minTime = (int) $estimate->min_days ?: 4;
